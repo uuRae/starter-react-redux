@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNote } from '../notes.slice';
 
 export default function CreateNote() {
   const [note, setNote] = useState('');
+  const dispatch = useDispatch();
 
   function handleSubmit(event) {
     event.preventDefault();
+    dispatch(addNote(note));
   }
 
   function handleChange({ target: { value } }) {

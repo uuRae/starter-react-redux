@@ -1,7 +1,17 @@
-export default function NotesList() {
-  const notes = [];
+import { useSelector, useDispatch } from "react-redux";
+import {
+  removeNote,
+  // selectAllNotes,
+  selectFilteredNotes,
+} from "../notes.slice";
 
-  function handleDeleteButtonClick(id) {}
+export default function NotesList() {
+  const notes = useSelector(selectFilteredNotes);
+  const dispatch = useDispatch();
+
+  function handleDeleteButtonClick(id) {
+    dispatch(removeNote(id));
+  }
 
   const notesListItems = notes.map(({ id, note }) => (
     <li key={id}>
